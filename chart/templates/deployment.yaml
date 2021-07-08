@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dota-deployment
+  namespace: dota
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dota
+  template:
+    metadata:
+      labels:
+        app: dota
+    spec:
+      containers:
+        - name: dota
+          image: "gcr.io/sousandrei/dota:{{ .Values.image }}"
+          imagePullPolicy: Always
+          envFrom:
+            - secretRef:
+                name: dota-secret
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "250Mi"
+            limits:
+              cpu: "1"
+              memory: "500Mi"

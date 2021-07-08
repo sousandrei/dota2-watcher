@@ -1,0 +1,6 @@
+apiVersion: v2
+name: dota
+description: Chart for the dota 2 TI news watcher
+type: application
+version: 0.1.0
+appVersion: "1.16.0"
