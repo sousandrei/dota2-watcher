@@ -12,7 +12,7 @@ RUN echo 000
 FROM base
 WORKDIR /opt
 
-COPY --from=builder /opt/dota/dota .
+COPY --from=builder /opt/dota/dota2-watcher dota
 
 RUN chmod +x /opt/dota
 
