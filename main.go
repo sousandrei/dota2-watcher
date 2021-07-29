@@ -106,8 +106,6 @@ func main() {
 			log.Fatal(readErr)
 		}
 
-		req.Body.Close()
-
 		news := News{}
 		json.Unmarshal(body, &news)
 
