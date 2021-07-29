@@ -111,18 +111,18 @@ func main() {
 
 		value, err := db.Get(ctx, LATEST_KEY).Result()
 		if err != nil {
-			bot.Send(&tb.Chat{ID: chatId}, "Failed to get redis key on list open")
+			bot.Send(&tb.Chat{ID: chatId}, "Failed to get latest redis key")
 		}
 
 		latest, err := strconv.Atoi(value)
 		if err != nil {
-			bot.Send(&tb.Chat{ID: chatId}, "Failed to parse latest key")
+			bot.Send(&tb.Chat{ID: chatId}, "Failed to parse latest redis key")
 		}
 
 		if latest < news.Entries[0].Time {
 			err := db.Set(ctx, LATEST_KEY, news.Entries[0].Time, 0).Err()
 			if err != nil {
-				bot.Send(&tb.Chat{ID: chatId}, "Failed to set redis key on list open")
+				bot.Send(&tb.Chat{ID: chatId}, "Failed to set redis key on new entry")
 			}
 
 			log.Println("sending message")
